@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -12,6 +14,12 @@ class Product extends Model
         'price', 'stock', 'is_visible', 'image'
     ];
 
+    protected $casts = [
+        'price' => 'decimal:2',
+        'stock' => 'integer',
+        'is_visible' => 'boolean',
+    ];
+
     // Define relationships
     public function category() {
         return $this->belongsTo(Category::class);
@@ -19,5 +27,14 @@ class Product extends Model
     
     public function brand() {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function attributes(): HasMany
+    {
+        return $this->hasMany(ProductAttribute::class);
+    }
+     public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

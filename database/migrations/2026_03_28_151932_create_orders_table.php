@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+       Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
+            $table->string('order_number', 30)->unique();
+            $table->string('status', 30)->default('pending');
+            $table->decimal('total_amount', 12, 2);
             $table->timestamps();
         });
     }

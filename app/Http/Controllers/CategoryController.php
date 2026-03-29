@@ -2,32 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with('parent')->latest()->get();
         return view('categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-         $categories = Category::all();
+        $categories = Category::all();
         return view('categories.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -36,39 +27,39 @@ class CategoryController extends Controller
             'parent_id' => 'nullable|exists:categories,id',
         ]);
 
-         Category::create($request->all());
-        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
+        Category::create($request->all());
+
+        return redirect()->route('categories.index')->with('success', 'Category created.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        $category->load(['children', 'parent']);
+        return view('categories.show', compact('category'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        $categories = Category::all();
+        return view('categories.edit', compact('category', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'slug' => 'required|string|max:120|unique:categories,slug,' . $category->id,
+            'parent_id' => 'nullable|exists:categories,id',
+        ]);
+
+        $category->update($request->all());
+
+        return redirect()->route('categories.index')->with('success', 'Category updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index')->with('success', 'Category deleted.');
     }
 }

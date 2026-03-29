@@ -37,8 +37,8 @@
                 <!-- Menu Items -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                    <a href="#products" class="text-gray-700 hover:text-blue-600 font-medium">Products</a>
-                    <a href="#brands" class="text-gray-700 hover:text-blue-600 font-medium">Brands</a>
+                    <a href="{{ route('products.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Products</a>
+                    <a href="{{ route('brands.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Brands</a>
                     <a href="{{ route('categories.index') }}" class="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
                 </div>
 
@@ -46,7 +46,6 @@
                 <div class="flex items-center space-x-4">
                     @auth
                         <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-blue-600 font-medium">Dashboard</a>
-                        {{-- <a href="{{ route('products.index') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium">Admin Panel</a> --}}
                     @else
                         <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-600 font-medium">Log in</a>
                         <a href="{{ route('register') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium">Register</a>
@@ -56,22 +55,25 @@
         </div>
     </nav>
 
+    <!-- Spacer for Fixed Navbar -->
+    <div class="h-16"></div>
+
     <!-- Hero Section -->
-    <section class="gradient-bg pt-32 pb-20">
+    <section class="gradient-bg py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
                     Welcome to Computer Shop
                 </h1>
-                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                <p class="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
                     Your one-stop destination for quality computers, laptops, and accessories. 
                     Browse our collection of top brands at competitive prices.
                 </p>
-                <div class="flex justify-center gap-4">
-                    <a href="#products" class="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">
+                <div class="flex justify-center gap-6">
+                    <a href="#products" class="bg-white text-blue-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition">
                         Browse Products
                     </a>
-                    <a href="{{ route('register') }}" class="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white/10 transition">
+                    <a href="{{ route('register') }}" class="border-2 border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-white/10 transition">
                         Get Started
                     </a>
                 </div>
@@ -85,45 +87,52 @@
             <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Shop by Category</h2>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <!-- Category 1 -->
-                <a href="#" class="group block">
-                    <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Laptops</h3>
-                    </div>
-                </a>
-
-                <!-- Category 2 -->
-                <a href="#" class="group block">
-                    <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Desktops</h3>
-                    </div>
-                </a>
-
-                <!-- Category 3 -->
-                <a href="#" class="group block">
-                    <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                        </svg>
-                        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Accessories</h3>
-                    </div>
-                </a>
-
-                <!-- Category 4 -->
-                <a href="#" class="group block">
-                    <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Monitors</h3>
-                    </div>
-                </a>
+                @forelse($categories as $category)
+                    <a href="{{ route('categories.index') }}" class="group block">
+                        <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
+                            <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">
+                                {{ $category->name }}
+                            </h3>
+                        </div>
+                    </a>
+                @empty
+                    <!-- Default Categories if none exist -->
+                    <a href="{{ route('categories.index') }}" class="group block">
+                        <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
+                            <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Laptops</h3>
+                        </div>
+                    </a>
+                    <a href="{{ route('categories.index') }}" class="group block">
+                        <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
+                            <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Desktops</h3>
+                        </div>
+                    </a>
+                    <a href="{{ route('categories.index') }}" class="group block">
+                        <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
+                            <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Accessories</h3>
+                        </div>
+                    </a>
+                    <a href="{{ route('categories.index') }}" class="group block">
+                        <div class="bg-gray-100 rounded-lg p-8 text-center hover:bg-blue-50 transition duration-300">
+                            <svg class="w-12 h-12 mx-auto text-blue-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <h3 class="text-lg font-semibold text-gray-800 group-hover:text-blue-600">Monitors</h3>
+                        </div>
+                    </a>
+                @endforelse
             </div>
         </div>
     </section>
@@ -134,77 +143,54 @@
             <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Featured Products</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Product 1 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
+                @forelse($products as $product)
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                        <a href="{{ route('products.show', $product->id) }}" class="block">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                @if($product->image)
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                @else
+                                    <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                @endif
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2 truncate">{{ $product->name }}</h3>
+                                <p class="text-sm text-gray-500 mb-2">{{ $product->brand?->name ?? 'No Brand' }}</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-blue-600">${{ number_format($product->price, 2) }}</span>
+                                    <span class="text-xs {{ $product->stock > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                        {{ $product->stock > 0 ? 'In Stock' : 'Out of Stock' }}
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Dell XPS 15</h3>
-                        <p class="text-sm text-gray-500 mb-2">Dell</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-blue-600">$1,499.99</span>
-                            <span class="text-xs text-green-600">In Stock</span>
+                @empty
+                    <!-- Default Products if none exist -->
+                    @for($i = 0; $i < 4; $i++)
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+                            <div class="h-48 bg-gray-200 flex items-center justify-center">
+                                <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Product {{ $i + 1 }}</h3>
+                                <p class="text-sm text-gray-500 mb-2">Brand Name</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold text-blue-600">$999.99</span>
+                                    <span class="text-xs text-green-600">In Stock</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">HP Pavilion</h3>
-                        <p class="text-sm text-gray-500 mb-2">HP</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-blue-600">$899.99</span>
-                            <span class="text-xs text-green-600">In Stock</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Asus ROG</h3>
-                        <p class="text-sm text-gray-500 mb-2">Asus</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-blue-600">$1,299.99</span>
-                            <span class="text-xs text-green-600">In Stock</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">MacBook Pro</h3>
-                        <p class="text-sm text-gray-500 mb-2">Apple</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xl font-bold text-blue-600">$2,499.99</span>
-                            <span class="text-xs text-green-600">In Stock</span>
-                        </div>
-                    </div>
-                </div>
+                    @endfor
+                @endforelse
             </div>
 
             <div class="text-center mt-12">
-                {{-- <a href="{{ route('products.index') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md font-semibold transition"> --}}
+                <a href="{{ route('products.index') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-md font-semibold transition">
                     View All Products
                 </a>
             </div>
@@ -216,55 +202,33 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-gray-800 text-center mb-12">Our Brands</h2>
             
-            <!-- Grid Layout (Same as brands/index.blade.php) -->
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                
-                <!-- Brand 1 -->
-                <div class="group relative">
-                    <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
-                        <span class="text-gray-700 font-medium text-lg">Dell</span>
-                    </div>
-                </div>
-
-                <!-- Brand 2 -->
-                <div class="group relative">
-                    <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
-                        <span class="text-gray-700 font-medium text-lg">HP</span>
-                    </div>
-                </div>
-
-                <!-- Brand 3 -->
-                <div class="group relative">
-                    <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
-                        <span class="text-gray-700 font-medium text-lg">Asus</span>
-                    </div>
-                </div>
-
-                <!-- Brand 4 -->
-                <div class="group relative">
-                    <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
-                        <span class="text-gray-700 font-medium text-lg">Acer</span>
-                    </div>
-                </div>
-
-                <!-- Brand 5 -->
-                <div class="group relative">
-                    <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
-                        <span class="text-gray-700 font-medium text-lg">MSI</span>
-                    </div>
-                </div>
-
-                <!-- Brand 6 -->
-                <div class="group relative">
-                    <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
-                        <span class="text-gray-700 font-medium text-lg">Apple</span>
-                    </div>
-                </div>
-
+                @forelse($brands as $brand)
+                    <a href="{{ route('brands.show', $brand->id) }}" class="group relative block">
+                        <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
+                            @if($brand->image)
+                                <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}" class="max-h-24 max-w-full object-contain">
+                            @else
+                                <span class="text-gray-700 font-medium text-lg">{{ $brand->name }}</span>
+                            @endif
+                        </div>
+                        <p class="text-center text-sm text-gray-600 mt-2 font-medium truncate">{{ $brand->name }}</p>
+                    </a>
+                @empty
+                    <!-- Default Brands if none exist -->
+                    @foreach(['Dell', 'HP', 'Asus', 'Acer', 'MSI', 'Apple'] as $brandName)
+                        <div class="group relative">
+                            <div class="bg-white border border-gray-200 rounded-lg h-40 flex items-center justify-center p-4 hover:shadow-lg hover:border-blue-500 transition duration-300">
+                                <span class="text-gray-700 font-medium text-lg">{{ $brandName }}</span>
+                            </div>
+                            <p class="text-center text-sm text-gray-600 mt-2 font-medium truncate">{{ $brandName }}</p>
+                        </div>
+                    @endforeach
+                @endforelse
             </div>
 
             <div class="text-center mt-12">
-                <a href="#" class="inline-block text-blue-600 hover:text-blue-800 font-semibold">
+                <a href="{{ route('brands.index') }}" class="inline-block text-blue-600 hover:text-blue-800 font-semibold">
                     View All Brands →
                 </a>
             </div>
@@ -318,9 +282,9 @@
                     <h4 class="font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="{{ route('home') }}" class="hover:text-white">Home</a></li>
-                        <li><a href="#products" class="hover:text-white">Products</a></li>
-                        <li><a href="#brands" class="hover:text-white">Brands</a></li>
-                        <li><a href="#categories" class="hover:text-white">Categories</a></li>
+                        <li><a href="{{ route('products.index') }}" class="hover:text-white">Products</a></li>
+                        <li><a href="{{ route('brands.index') }}" class="hover:text-white">Brands</a></li>
+                        <li><a href="{{ route('categories.index') }}" class="hover:text-white">Categories</a></li>
                     </ul>
                 </div>
                 <div>

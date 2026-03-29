@@ -1,26 +1,43 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\Product;
 
+// Welcome/Home Page (Public)
 Route::get('/', function () {
-    return view('Main');
+    // Get data from database
+    $categories = Category::whereNull('parent_id')->take(4)->get();
+    $brands = Brand::take(6)->get();
+    $products = Product::where('is_visible', true)
+                       ->with(['category', 'brand'])
+                       ->take(8)
+                       ->get();
+    
+    return view('Main', compact('categories', 'brands', 'products'));
 })->name('home');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+// Authenticated Routes
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/products/brand/{brand}', [ProductController::class, 'byBrand'])->name('products.byBrand');
+    
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Resources (CRUD)
+    Route::resource('categories', CategoryController::class);
+    Route::resource('brands', BrandController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
+
+    
 });
 
-// Route::resource('categories', CategoryController::class);
-Route::middleware(['auth'])->group(function () {
-    Route::resource('categories', CategoryController::class);
-    Route::resource('brands', BrandController::class); // Add this
-    // ... other routes
-});
+// require __DIR__.'/auth.php';
