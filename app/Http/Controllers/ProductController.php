@@ -119,4 +119,53 @@ class ProductController extends Controller
         
         return view('products.by-brand', compact('products', 'brand'));
     }
+
+    // Add these methods to your existing ProductController
+
+    public function shop(Request $request)
+    {
+        $query = Product::where('is_visible', true)
+                        ->where('stock', '>', 0)
+                        ->with(['category', 'brand']);
+
+        // Filter by category
+        if ($request->has('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        // Filter by brand
+        if ($request->has('brand')) {
+            $query->where('brand_id', $request->brand);
+        }
+
+        // Search by name
+        if ($request->has('search')) {
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
+        }
+
+        $products = $query->latest()->paginate(12);
+        $categories = Category::whereNull('parent_id')->get();
+        $brands = Brand::all();
+
+        return view('\customers\shops.index', compact('products', 'categories', 'brands'));
+    }
+
+    public function shopShow(Product $product)
+    {
+        if (!$product->is_visible) {
+            abort(404);
+        }
+
+        $product->load(['category', 'brand', 'attributes']);
+        
+        // Related products (same category)
+        $relatedProducts = Product::where('category_id', $product->category_id)
+                                ->where('id', '!=', $product->id)
+                                ->where('is_visible', true)
+                                ->where('stock', '>', 0)
+                                ->take(4)
+                                ->get();
+
+        return view('\customers\shops.show', compact('product', 'relatedProducts'));
+    }
 }
